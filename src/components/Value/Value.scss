@@ -1,0 +1,77 @@
+.v-container {
+    .image-container {
+        border : 8px solid rgb(232 232 232 / 93%);
+    }
+
+    &>div {
+        flex: 1;
+    }
+
+    .v-right {
+        gap: 0.5rem;
+    }
+
+    .accordion-container {
+        margin-top: 2rem;
+        border: none;
+
+        .accordion-item {
+            background: white;
+            border: 0.8px solid rgba(128,128,128, 0.143);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+
+            &.expanded {
+                box-shadow: var(--shadow);
+                border-radius: 6px;
+            }
+        }
+
+        .accordion-button {
+            background: white;
+            padding: 1rem;
+            width: 100%;
+            justify-content: space-between;
+            cursor: pointer;
+
+            .primaryText {
+                font-size: 1.1rem;
+            }
+        }
+
+        .icon {
+            padding: 10px;
+            background: #EEEEFF;
+            border-radius: 5px;
+
+            svg {
+                fill: var(--blue);
+            }
+        }
+    }
+}
+
+@media (max-width:980px) {
+    .v-container{
+        flex-direction: column;
+    }
+    .accordion-button{
+        row-gap: 1rem;
+    }
+    .accordion-button>span{
+        font-size: 1rem;
+    }
+    .accordion-button> .icon {
+        padding: 5px !important;
+        margin: 0 3px;
+    }
+
+}
+
+@media (max-width:400px) {
+    .accordion-button> .icon {
+        padding: 0 !important;
+        margin: 0 ;
+    }
+}
