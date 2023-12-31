@@ -3,8 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import "./Header.scss";
 import { BiMenuAltRight } from "react-icons/bi";
 import OutSideClickHandler from "react-outside-click-handler";
+import { useAuth0 } from "@auth0/auth0-react";
+import ProfileMenu from "../ProfileMenu/ProfileMenu";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  // useAuth0 hook
+  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
   const getMenuStyles = (menuOpen) => {
     if (document.documentElement.clientWidth <= 800) {
       return { right: !menuOpen && "-100%" };
@@ -19,7 +23,6 @@ const Header = () => {
       setMenuOpen(false);
     }
   };
-  console.log("re render", menuOpen);
   return (
     <section className="h-wrapper">
       <div className="h-container flexCenter paddings innerWidth">
@@ -29,12 +32,20 @@ const Header = () => {
 
         <OutSideClickHandler onOutsideClick={closeMenu}>
           <div className="h-menu flexCenter" style={getMenuStyles(menuOpen)}>
+            <NavLink to="/">Home</NavLink>
             <NavLink to="/properties">Properties</NavLink>
             <NavLink to="/values">Our Values</NavLink>
             <NavLink to="/contactUs">Contact Us</NavLink>
-            <button>
-              <a href="#">Get Started</a>
-            </button>
+
+            {/* login button */}
+            {!isAuthenticated ? (
+              <button className="button" onClick={loginWithRedirect}>
+                Login
+              </button>
+            ) : (
+              <ProfileMenu user={user} logout={logout} />
+            )}
+
             {/* <a href="#">Residencies</a>
             <a href="#">Our Value</a>
             <a href="#">Contact Us</a>

@@ -37,30 +37,31 @@ export const Value = () => {
           {/* accordion */}
           <Accordion
             className="accordion-container"
-            allowMultipleExpanded={true}
+            allowMultipleExpanded={false}
             preExpanded={[0]}
+            // allowZeroExpanded
           >
             {data.map((item, i) => {
-              let [className, setClassName] = useState(null);
+              // let [className, setClassName] = useState(null);
               
               return (
                 <AccordionItem
+                  className={`accordion-item`}
                   // className={`accordion-item ${className}`}
-                  className={`accordion-item ${className}`}
                   key={i}
                   uuid={i}
                 >
                   <AccordionItemHeading>
                     <AccordionItemButton className="flexCenter accordion-button">
 
-                      <AccordionItemState>
+                      {/* <AccordionItemState>
                         
                         {({ expanded }) =>
                           expanded
                             ? setClassName("expanded")
                             : setClassName("collapsed")
                         }
-                      </AccordionItemState>
+                      </AccordionItemState> */}
                       
 
                       <div className="flexCenter icon">{item.icon}</div>
